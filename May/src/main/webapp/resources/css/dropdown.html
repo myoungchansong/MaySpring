@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DropDawn</title>
+<style type="text/css">
+	#dropdown{
+		width: 80px;
+		padding: 16px;
+		background-color: #4CAF50;
+		text-align: center;
+		color: white;
+		font-size: 16px;
+		font-weight: bold;
+		position: relative;
+	}
+	#content{
+		width: 112px;
+		background-color: #f15c5c;
+		position: absolute;
+		top: 53px;
+		left: 0px;
+		display: none;
+	}
+	#content > a{
+		display: block;
+		color: white;
+		text-decoration: none;
+		padding: 5px 10px;
+	
+	}
+	#dropdown:hover{
+		background-color: #3e8e41;
+	}
+	#dropdown:hover #content{
+		display: block;
+	}
+	#content > a:hover{
+		background-color: #c1c1c1;
+	}
+	
+</style>
+</head>
+<body>
+	<div id="dropdown">DropDown
+		<div id="content">
+			<a href="#">Link 1</a>
+			<a href="#">Link 2</a>
+			<a href="#">Link 3</a>
+		
+		</div>
+	
+	</div>
+
+
+</body>
+</html>

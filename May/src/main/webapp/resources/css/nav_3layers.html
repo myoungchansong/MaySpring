@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	body, ul{
+	margin: 0px;
+	padding: 0px;
+	
+	}
+	#nav_wrap{
+		background-color: black;
+		width: 100%;
+		height: 50px;
+	}
+	ul{
+		list-style-type: none;
+	}
+	a{
+		text-decoration: none;
+	}
+	#nav_ul >li	{
+		float: left;
+		position: relative;
+	}
+	#nav_ul >li:hover{
+		background-color: gray;
+		
+	}
+	
+	#nav_ul >li > a{
+		color: white;
+		line-height: 50px;
+		padding: 0px 10px;	
+		display: inline-block;
+		height: 50px;
+	}
+	#nav_ul >li:hover: #dropdown{
+		display: block;
+	}
+	#dropdown	{
+		position: absolute;
+		background-color: red;
+		display: ;
+	}
+	
+	#dropdown > ul > li{
+		position: relative;
+	}
+	#dropdown > ul > li:hover{
+		background-color: gray;
+	}
+	
+	
+	
+	#dropdown2 {
+		position: absolute;
+		left: 87px;
+		top: 0px;
+		display: none;
+	}
+	#dropdown2 > a{
+		background-color: black;
+		display: block;
+		color: white;
+		width: 80px;
+		text-align: center;
+		padding: 5px 0px;
+	}
+	#dropdown2 > a:hover{
+		background-color: gray;
+	}
+	#dropdown > ul > li > a{
+		
+		color: white;
+		width: 87px;
+		display: inline-block;
+		text-align: center;
+		padding: 5px 0px;
+		
+	
+	}
+	#dropdown > ul > li:hover #dropdown2{
+		display:block;
+	}
+</style>
+</head>
+<body>
+	<div id="header_wrop">
+		<div id="nav_wrap">
+			<div id="nav_inner">
+				<ul id="nav_ul">
+					<li><a href="#">programming</a></li>
+					<li><a href="#">database</a>
+						<div id="dropdown">
+							<ul>
+								<li><a href="#">MSSQL</a></li>
+								<li><a href="#">MySQL</a></li>
+								<li>
+									<a href="#">ORACLE</a>
+									<div id="dropdown2">
+									<a href="">ORACLE1</a>
+									<a href="">ORACLE2</a>
+									<a href="">ORACLE3</a>
+									<a href="">ORACLE4</a>
+									</div>
+								
+								</li>
+								<li><a href="#">MariaDB</a></li>
+							</ul>
+						</div>
+					</li>
+					
+					<li><a href="#">NOSQL</a></li>
+					<li><a href="#">Linux</a></li>
+					<li><a href="#">Network</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
