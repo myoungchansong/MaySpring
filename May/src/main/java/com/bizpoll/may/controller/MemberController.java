@@ -246,22 +246,23 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="delete", method=RequestMethod.POST)
-	public String deleteplayAction(String id, HttpSession session)throws IOException {
+	public String deleteplayAction(MayMemberDTO mdto, HttpSession session)throws IOException {
 		Logger.info("=============> POST회원 삭제 페이지");
 		
-		int result = service.delete(id);
+		int result = service.delete(mdto);
+		
 		System.out.println("====================>"+result);
 		if(result > 0) {
 			System.out.println("회원삭제");
 				if(session != null) {
 					session.invalidate();
+					
 				}
 				
 			return"delete_join";
-			
 		} else {
 			
-			return"redirect:/index";
+			return"redirect:/delete";
 		}
 	}
 

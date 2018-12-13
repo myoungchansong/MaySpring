@@ -242,80 +242,111 @@ ul {
 							/*input태그에 입력된 값을 가져옴*/
 							var inputVal = $(this).val();
 							/*input태그에 입력된 값을 가져옴*/
-							if (inputVal == "")
-								$(this).next().text("회원 탈퇴를 위해 입력해주세요").css(
-										"display", "block");
+							if (inputVal == ""){
+								$(this).next().text("회원 탈퇴를 위해 입력해주세요").css("display", "block").css("color", "red");
+							}
 							else {
 								$(this).next().css("display", "none");
 							}
 
 						});
+		
+		/*ID 검사 */
+		$("#input_id").blur(
+			function() {
+				/*input태그에 입력된 값을 가져옴*/
+				var inputVal = $("#input_id").val();
+				var session= '${sessionScope.loginUser.id}';
+				
+				if (inputVal == session){
+					$(this).next().text("계속 진행해주세요").css("display", "block").css("color", "black");
+					$("#input_pw").focus();
+				}
+				else if(inputVal != session){
+					$(this).next().text("아이디가 일치하지 않습니다").css("display", "block").css("color", "red");
+					$("#input_id").select();
+					$("#input_id").focus();
+				}else if(inputVal == ""){
+					$("#input_id").select();
+					$(this).next().text("회원 탈퇴를 위해 입력해주세요").css("display", "block").css("color", "red");
+					$("#input_id").focus();
+				}
+				/*input태그에 입력된 값을 가져옴*/
+				/* if (inputVal == "")
+					$(this).next().text("회원 탈퇴를 위해 입력해주세요").css("display", "block");
+				else {
+					$(this).next().css("display", "none");
+				}
+ */
+		});
+		
+		
 
 				/*=============================ajax============================================  */
 
 				
-	$(document).on("click","#btn_in",function() {
+				
+				
+	$("#input_pw").blur(function() {
 		var nowPw = $("#input_pw").val();
-		alert("pw:" + nowPw);
+		$.ajax({
+			url : "${path}/member/pwCheck",
+			type : "POST",
+			dataType : "json",
+			data : "id=${sessionScope.loginUser.id}&pw="+ nowPw,
+			success : function(data) {
+				if (data == "1") {
+					$("#input_pw").next().text("탈퇴를 진행해주세요").css("display","block").css("color", "black");
+					} else if (data == "-1") {
+						$("#input_pw").next().text("정확하게 입력해주세요").css("display","block").css("color", "red");
+						$("#input_pw").select();
+						$("#input_pw").focus();
+					}
 
-			$.ajax({
-				url : "${path}/member/delete",
-				type : "POST",
-				dataType : "json",
-				data : "id=${sessionScope.loginUser.id}&pw="+ nowPw,
-				success : function(data) {
-					if (data.message == 1) {
-							location.href="index.bizpoll";
-						} else if (data.message == -1) {
-							$("#input_id").next().text("정확하게 입력해주세요").css("display","block").css("color", "#F46665");
-							$("#input_pw").select();
-						}
+					},
+					error : function() {
+					alert("System Error");
+					}
+			});
+				
+	});			
+				
+				
 
-						},
-						error : function() {
-						alert("System Error");
-						}
-					});
-				});
+
+		$(document).on("click",".btn_agree",function(){
+			var form = $("#frm_mem"), 
+			mid = $("#input_id"), 
+			mpw1 = $("#input_pw"),
+			mname = $("#input_name");
+			/*trim = 앞 뒤 공백 제거(가운데 공백은 제거 안됨)*/
+			/*아이디 */
+			if (mid == "") {
+				mid.focus();
+				mid.next().text("회원 탈퇴를 위해 ID를 입력하세요").css("display","block").css("color", "red");
+				$("#input_id").focus();
+				$("#input_id").select();
+					return false;
+			} else if (mpw1 == "") {
+				mpw1.next().text("비밀번호를 입력해 주세요").css("display","block").css("color", "red");
+				mpw1.focus();
+				mpw1.select();
+				return false;
+			} else{
+				form.submit();
+			}
 		});
+		
+		if('${sessionScope.loginUser.id}' !=''){
+		} else {
+			alert('로그인후 사용이 가능합니다 ');
+			location.href="${path}/index";
+		}
+		
+		
+		
+	});
 
-	$(document)
-			.on(
-					"click",
-					".btn_agree",
-					function() {
-						var form = $("#frm_mem"), mid = $("#input_id"), mpw1 = $("#input_pw"), mname = $("#input_name");
-
-						var id = $.trim(mid.val())
-						var regId = /^[a-z0-9_-]{3,16}$/; /*영문자와 숫자만 가능한 (자바 정규식)*/
-						/*trim = 앞 뒤 공백 제거(가운데 공백은 제거 안됨)*/
-						/*아이디 */
-						if (id == "") {
-							mid.focus();
-							mid.next().text("회원 탈퇴를 위해 입력하세요").css("display",
-									"block");
-							return false;
-						}
-						/*ID 중복 체크 해야함 */
-
-						/*비밀번호*/
-						var pw1 = $.trim(mpw1.val());
-
-						if (pw1 == "") {
-							mpw1.focus();
-							mpw1.next().text("비밀번호를 입력해 주세요").css("display",
-									"block");
-							return false;
-						}
-						/*이름 */
-
-						/*  form.submit()*/
-					});
-
-	/*유효성체크 값이 유효한값 확인 끝*/
-	/*$("#btn_in").click(function(){
-		form.submit();
-	});*/
 </script>
 </head>
 <body>
@@ -350,30 +381,28 @@ ul {
 
 			
 				<!-- name값과 id값은 똑같이 해주는게 좋다  -->
-
+			<form action="${path}/member/delete" id="frm_mem" method="POST" >
 				<div id="insert_id" class="insert_div">
 					<label for="input_id" class="insert_label"> ID </label> <input
-						type="text" id="input_id" name="input_id" class="input_class">
+						type="text" id="input_id" name="id" class="input_class">
 					<span class="error" id="input_error">옯바른 값을 입력해주세요 </span>
 				</div>
 
-
 				<div id="insert_pw" class="insert_div">
 					<label for="input_pw" class="insert_label" id="pw1">
-						PASSWORD </label> <input type="password" id="input_pw" name="input_pw"
+						PASSWORD </label> <input type="password" id="input_pw" name="pw"
 						class="input_class ckeckpw"> <span class="error">옯바른
 						값을 입력해주세요 </span>
 				</div>
-
-
+				
+			</form>
 			
-
 				<div>
 					<a href="#" id="btn_in"  class="btn_agree">탈퇴</a> <a
 						href="index.bizpoll" id=ac_not>메인으로 가기</a>
 				</div>
 
-
+		
 
 
 		</section>

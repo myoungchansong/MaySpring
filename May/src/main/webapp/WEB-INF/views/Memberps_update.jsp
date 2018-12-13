@@ -258,7 +258,7 @@ select {
 						$("#input_pw").next().text("현재 비밀번호가  값이 일치합니다 ").css("display", "block").css("color", "black");
 						$("#input_pw1").select();
 					}else{
-						$("#input_pw").next().text("현재 비밀번호가  아닙니다 ").css("display", "block");
+						$("#input_pw").next().text("현재 비밀번호가  아닙니다 ").css("display", "block").css("color", "red");
 						$("#input_pw").focus();
 						
 					}
@@ -340,6 +340,12 @@ select {
 					}
 
 				});
+		
+		if('${sessionScope.loginUser.id}' !=''){
+		} else {
+			alert('로그인후 사용이 가능합니다 ');
+			location.href="${path}/index";
+		}
 	});
 	
 </script>

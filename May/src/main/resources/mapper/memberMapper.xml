@@ -48,7 +48,7 @@
 	
 	<delete id="delete" parameterType="String">
 		DELETE FROM maymember
-		WHERE id = #{id}
+		WHERE pw= #{pw} AND id= #{id}
 	</delete>
 	
 	

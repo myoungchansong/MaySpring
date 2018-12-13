@@ -52,9 +52,9 @@ public class MemberServiceImpl implements IMemberService{
 		
 	}
 	
-	public int delete(String id) throws IOException{
+	public int delete(MayMemberDTO mdto) throws IOException{
 		
-		return mDao.delete(id);
+		return mDao.delete(mdto);
 	}
 	
 }

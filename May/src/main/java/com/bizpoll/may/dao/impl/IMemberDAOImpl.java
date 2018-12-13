@@ -55,9 +55,9 @@ public class IMemberDAOImpl implements IMemberDAO{
 	}
 	
 
-	public int delete(String id) throws IOException{
+	public int delete(MayMemberDTO mdto) throws IOException{
 		
-		return session.delete(namespace+".delete", id);
+		return session.delete(namespace+".delete", mdto);
 	}
 	
 }

@@ -156,7 +156,7 @@
 				
 				<c:choose> 
 					<c:when test="${empty sessionScope.loginUser}">
-						<li><a href="<%=path%>/construct.bizpoll">회원가입</a></li>
+						<li><a href="<%=path%>/member/Construct">회원가입</a></li>
 						<li><a class ="active" href="<%=path%>/member/login">Log IN</a></li>	
 					</c:when>
 					<c:otherwise>

@@ -19,5 +19,5 @@ public interface IMemberService {
 	
 	public String pwCheck(MayMemberDTO dto) throws IOException;
 	
-	public int delete(String id) throws IOException;
+	public int delete(MayMemberDTO mdto) throws IOException;
 }

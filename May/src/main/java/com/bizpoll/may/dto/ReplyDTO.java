@@ -2,16 +2,16 @@ package com.bizpoll.may.dto;
 
 import java.util.Date;
 
-public class RepleDTO {
+public class ReplyDTO {
 	private int rno;
 	private String content;
 	private String writer;
 	private Date regdate;
 	private int bno;
-	public RepleDTO() {
+	public ReplyDTO() {
 		super();
 	}
-	public RepleDTO(int rno, String content, String writer, Date regdate, int bno) {
+	public ReplyDTO(int rno, String content, String writer, Date regdate, int bno) {
 		super();
 		this.rno = rno;
 		this.content = content;
@@ -22,12 +22,12 @@ public class RepleDTO {
 	
 	
 	
-	public RepleDTO(int rno, String content) {
+	public ReplyDTO(int rno, String content) {
 		super();
 		this.rno = rno;
 		this.content = content;
 	}
-	public RepleDTO(String content, String writer, int bno) {
+	public ReplyDTO(String content, String writer, int bno) {
 		super();
 		this.content = content;
 		this.writer = writer;

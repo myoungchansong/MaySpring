@@ -455,6 +455,15 @@
 		
 		$("#input_email_id").val(emailid);
 		$("#input_email_pw").val(emailurl);
+		
+		
+		
+		if('${sessionScope.loginUser.id}' !=''){
+		} else {
+			alert('로그인후 사용이 가능합니다 ');
+			location.href="${path}/index";
+		}
+		
 	});
 	
 </script>
