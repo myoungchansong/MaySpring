@@ -311,6 +311,9 @@ section.secl {
 		});
 		
 		
+		
+		
+		
 	});
 </script>
 
@@ -393,12 +396,12 @@ section.secl {
 			<div class="nav1_div">
 				<p><a href="${path}/blog/list?flag=${flag}&keyword=${keyword}&code=cnt" id="orderCnt" class="order_nav">조회</a></p>
 			</div>
+			
 			<c:choose>
 				<c:when test="${empty sessionScope.loginUser}">
 					<!-- 로그인 안됐을때  -->
 					<div class="nav1_div">
-					<!-- 	<p><a href="login.bizpoll">등록</a></p> -->
-						<p><a href="${path}/blog/register" style="font-style: none" id=>등록</a></p>
+						<p><a href="${path}/member/login">로그인</a></p>
 					</div>	
 				</c:when>
 				<c:otherwise>
@@ -406,14 +409,12 @@ section.secl {
 					<div class="nav1_div">
 						<p><a href="${path}/blog/register" style="font-style: none" id=>등록</a></p>
 					</div>	
-					
 				</c:otherwise>
 			</c:choose>
 		</div>
 		
 		
-		
-		
+			
 		
 		
 		

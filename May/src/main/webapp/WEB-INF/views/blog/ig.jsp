@@ -231,9 +231,7 @@
 		border: none;
 	}
 </style>
-<script type="text/javascript" src="<%=path%>/SmartEditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -246,38 +244,37 @@
 		$(document).on("click", "#blogupdate", function(){
 			location.href="${path}/blog/modify?bno=${blogview.bno}"
 		});
-		
-		
-		
-		
-		
-		
-		
+	
 		/* 삭제  */
 		$(document).on("click", "#modal_btn", function(){
 			location.href="${path}/blog/remove?bno=${blogview.bno}&filename=${blogview.filename}"
 		});
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		/* 목록  */
 		$(document).on("click", "#blog_list", function(){
 			location.href="${path}/blog/list";
 		});
 		
 		
-		/* 댓글   */
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/* 댓글                     						  2*/
 		
 		$(document).ready(function(){
 			comment_list();
 		});
 		
+		
+		
+		/* 댓글  수정  5555*/
 		 function cmUpdateOpen(rno){
 	            window.name = "parentForm";
 	            window.open("replyupdate.bizpoll?rno="+rno,
@@ -285,21 +282,27 @@
 	        }
 
 		
+		
+		
+		 /* 댓글  페이지 Ajax를 통해 불러오기                         1 */
 		function comment_list(){
 			$.ajax({
 				type: "post",
-				url: "commentlist.bizpoll",
+				url: "${path}/reply/commentlist",
 				data: "bno=${blogview.bno}",
 				success: function(result){
+					alert(result);
 					$("#commentList").html(result);
+					
 				}
+				
 			});
 		}
 		
 		
 		
 		
-		
+		/* 댓글  지우기                                    4*/
 		$(document).on("click", "#del_btn", function(){
 			var rno = $(this).attr("data_num");
 			var bno =${blogview.bno};
@@ -321,7 +324,7 @@
 		
 		
 		
-		/*  ================추천======= */
+		/*  ======추천======= 666666666666666*/
 		$(document).on("click", "#goodbutton", function(){
 			
 			var bno =${blogview.bno};
@@ -355,7 +358,7 @@
 		
 		
 		
-		
+		/* 댓글  입력하기                                      3*/
 		$(document).on("click", "#btn_input3", function(){
 			var keyword = $("#keywordInput").val();
            
@@ -442,7 +445,7 @@
 	</div>	
 			
 		<div id="lingk">
-		<%-- 	<c:if test="${sessionScope.loginUser.id == blogview.writer}"> --%>
+			<c:if test="${sessionScope.loginUser.id == blogview.writer}"> 
 			<!-- 	<button class="btn4">삭제</button> -->
 				<button  id="blogupdate">수정</button>
 						<!-- Button to Open the Modal -->
@@ -476,7 +479,7 @@
 						</div>
 
 					
-			<%-- 	</c:if> --%>
+				</c:if>
 			<button class="btn4">답변</button>
 			<button class="btn4" id="blog_list">목록</button>
 		</div>
@@ -484,7 +487,7 @@
 		</div>
 		
 		<div id="photo_border">
-			<img src="img/${blogview.filename}" id="photo">
+			<img src="${path}/img/${blogview.filename}" id="photo">
 		</div>
 		
 		

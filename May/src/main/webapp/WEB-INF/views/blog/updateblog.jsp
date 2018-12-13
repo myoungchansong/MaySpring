@@ -137,7 +137,6 @@ a {
 </style>
 
 <script type="text/javascript" src="<%=path%>/SmartEditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
-<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 
 	$(document).on("click", "#btn-2", function(elClickedObj){
@@ -201,7 +200,14 @@ a {
 		$("#close_btn").css("display", "none");
 	}); 
 	
-	 
+	 $(document).ready(function(){
+		 /* Session이 Null 이면  메인페이지간다 */
+			if('${sessionScope.loginUser.id}' !=''){
+			} else {
+				alert('로그인후 사용이 가능합니다 ');
+				location.href="${path}/index";
+			}
+		}); 
 	
 </script>
 </head>

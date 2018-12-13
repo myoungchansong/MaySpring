@@ -175,7 +175,15 @@ a {
 		$("#file-name").text("선택된 파일 없음");
 		$("#close_btn").css("display", "none");
 	}); 
-	
+	 
+	 $(document).ready(function(){
+	 /* Session이 Null 이면  메인페이지간다 */
+		if('${sessionScope.loginUser.id}' !=''){
+		} else {
+			alert('로그인후 사용이 가능합니다 ');
+			location.href="${path}/index";
+		}
+	}); 
 </script>
 </head>
 <body>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bizpoll.may.mapper.replyMapper">
+
+
+	<select id="replyList" parameterType="String" resultType="com.bizpoll.may.dto.ReplyDTO">
+		SELECT * FROM mayreply
+		WHERE bno = #{bno}
+		ORDER BY rno ASC
+	</select>
+</mapper>
